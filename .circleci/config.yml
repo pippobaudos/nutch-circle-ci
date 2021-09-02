@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build-branch:
+    docker:
+    - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - checkout
+      - run: Check versions
+          command: ant -version
+          command: javac -version
+      - run:
+          name: Launch ant
+          command: ant runtime
+ workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build-branch
